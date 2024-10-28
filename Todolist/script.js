@@ -2,13 +2,26 @@ const apiUrl = "http://localhost:3000/todos";
 const todoList = document.getElementById("todo-list");
 const addTodoBtn = document.getElementById("add-todo-btn");
 const todoInput = document.getElementById("todo-input");
+let idCounter = 1; // Default ID counter
 
-// Fetch and display todos
+// Fetch and display todos with error handling
 async function fetchTodos() {
-  const response = await fetch(apiUrl);
-  const todos = await response.json();
-  todoList.innerHTML = ""; // Clear existing list
-  todos.forEach((todo) => renderTodoItem(todo));
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+    
+    const todos = await response.json();
+
+    // Update idCounter based on existing IDs
+    if (todos.length > 0) {
+      idCounter = Math.max(...todos.map(todo => todo.id)) + 1;
+    }
+
+    todoList.innerHTML = ""; // Clear existing list
+    todos.forEach((todo) => renderTodoItem(todo));
+  } catch (error) {
+    console.error("Failed to fetch todos:", error.message);
+  }
 }
 
 // Render a single todo item
@@ -29,36 +42,54 @@ function renderTodoItem(todo) {
   todoList.appendChild(listItem);
 }
 
-// Add a new todo
+// Add a new todo with error handling
 async function addTodo() {
   const title = todoInput.value.trim();
   if (title === "") return alert("Please enter a todo title!");
 
-  const newTodo = { title, completed: false };
-  const response = await fetch(apiUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newTodo),
-  });
-  const createdTodo = await response.json();
-  renderTodoItem(createdTodo);
-  todoInput.value = ""; // Clear input
+  const newTodo = { id: idCounter++, title, completed: false };
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTodo),
+    });
+    if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+    const createdTodo = await response.json();
+    renderTodoItem(createdTodo);
+    todoInput.value = ""; // Clear input
+  } catch (error) {
+    console.error("Failed to add todo:", error.message);
+  }
 }
 
-// Delete a todo
+// Delete a todo with error handling
 async function deleteTodo(id) {
-  await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
-  fetchTodos(); // Refresh list after deletion
+  try {
+    const response = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+    if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+    
+    fetchTodos(); // Refresh list after deletion
+  } catch (error) {
+    console.error(`Failed to delete todo with ID ${id}:`, error.message);
+  }
 }
 
-// Toggle completion status
+// Toggle completion status with error handling
 async function toggleComplete(id, completed) {
-  await fetch(`${apiUrl}/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ completed: !completed }),
-  });
-  fetchTodos(); // Refresh list after update
+  try {
+    const response = await fetch(`${apiUrl}/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ completed: !completed }),
+    });
+    if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+    fetchTodos(); // Refresh list after update
+  } catch (error) {
+    console.error(`Failed to toggle completion for todo with ID ${id}:`, error.message);
+  }
 }
 
 // Event listeners
