@@ -1,0 +1,10 @@
+{
+   "compilerOptions": {
+     "outDir": "./dist", // specify your output directory if you haven't
+     // Other compiler options...
+   },
+   "exclude": [
+     "**/*.js"  // Exclude JavaScript files to avoid duplicate definition errors
+   ]
+ }
+ 

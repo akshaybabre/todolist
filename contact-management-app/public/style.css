@@ -1,0 +1,93 @@
+/* public/style.css */
+
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #C6E7FF;
+    color: #1A1A19;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Main Container */
+#app {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Form and Contact List Styling */
+#form-container, #contactList {
+    background-color: #CDC1FF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    flex: 1;
+}
+
+/* Form Styling */
+#form-container h2, #contactList h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Contact List Styling */
+#contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual Contact Card Styling */
+.contact-card {
+    background-color: #FFF;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card p {
+    margin: 5px 0;
+}
+
+.contact-card button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column;
+    }
+}
