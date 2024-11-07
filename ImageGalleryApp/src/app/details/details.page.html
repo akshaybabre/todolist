@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ item.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Row 1: Image Carousel with Left and Right Arrows -->
+  <ion-row class="image-carousel">
+    <ion-col size="1" class="arrow-container">
+      <ion-icon
+        name="arrow-back-circle"
+        (click)="previousImage()"
+        *ngIf="currentImageIndex > 0"
+      ></ion-icon>
+    </ion-col>
+
+    <ion-col size="10" class="image-display">
+      <img [src]="item.imageUrls[currentImageIndex]" class="displayed-image" />
+    </ion-col>
+
+    <ion-col size="1" class="arrow-container">
+      <ion-icon
+        name="arrow-forward-circle"
+        (click)="nextImage()"
+        *ngIf="item && currentImageIndex < item.imageUrls.length - 1"
+      ></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <!-- Row 2: Item Details Card -->
+  <ion-card class="details-card">
+    <ion-card-header>
+      <ion-card-subtitle>{{ item.subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Model:</strong> {{ item.model }}</p>
+      <p><strong>Price:</strong> {{ item.price }}</p>
+      <ion-button expand="full" color="success">Make Offer</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<!-- Footer with Navigation Buttons -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/add">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

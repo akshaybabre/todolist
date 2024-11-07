@@ -1,0 +1,21 @@
+{
+   "images": [
+     {
+       "id": 1,
+       "title": "Car 1",
+       "subtitle": "Luxury Car",
+       "model": "Model X",
+       "price": "$20,000",
+       "imageUrls": ["assets/car1a.jpg", "assets/car1b.jpg", "assets/car1c.jpg"]
+     },
+     {
+       "id": 2,
+       "title": "Car 2",
+       "subtitle": "SUV",
+       "model": "Model Y",
+       "price": "$25,000",
+       "imageUrls": ["assets/car2a.jpg", "assets/car2b.jpg"]
+     }
+   ]
+ }
+ 

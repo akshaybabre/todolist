@@ -1,0 +1,62 @@
+/* Center and style the image carousel row */
+.image-carousel {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px 0;
+   background-color: #f4f4f8;
+ }
+ 
+ .arrow-container ion-icon {
+   font-size: 36px;
+   color: #3880ff;
+   cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .image-display {
+   text-align: center;
+ }
+ 
+ .displayed-image {
+   width: 100%;
+   max-width: 300px;
+   height: auto;
+   max-height: 250px;
+   object-fit: cover;
+   border-radius: 8px;
+ }
+ 
+ /* Style the details card */
+ .details-card {
+   margin: 20px;
+   padding: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+   background-color: #ffffff;
+ }
+ 
+ ion-card-subtitle {
+   font-size: 1.1rem;
+   color: #666;
+ }
+ 
+ ion-card-title {
+   font-size: 1.5rem;
+   font-weight: bold;
+   color: #333;
+ }
+ 
+ ion-card-content p {
+   font-size: 1rem;
+   margin-bottom: 8px;
+   color: #444;
+ }
+ 
+ ion-button {
+   --border-radius: 8px;
+   font-size: 1rem;
+ }
+ 
